@@ -18,6 +18,7 @@ Automates posting a video as a reel on Instagram via the web UI using Playwright
 - **Video file path** — absolute path to the video (mp4 recommended)
 - **Caption / description** — the caption text to use (ask if missing, see step 0)
 - **Tags** — hashtags to append to the caption (ask if missing, see step 0)
+- **Aspect ratio / resolution** — the crop ratio for the reel. **Defaults to 9:16 (vertical/portrait)**, which is the native reel format. Only change it if the user asks for a different ratio (e.g. 1:1, 4:5, 16:9, or Original). See step 7.
 
 ## Steps
 
@@ -81,10 +82,16 @@ Click **Select From Computer** — this opens a file chooser. Use `browser_file_
 
 After upload, Instagram may show a dialog: *"Video posts are now shared as reels"*. Click **OK** to dismiss it.
 
-### 7. Navigate through the editor
+### 7. Set the aspect ratio, then navigate through the editor
 
-- On the **Crop** screen → click **Next**
-- On the **Edit** screen → click **Next**
+On the **Crop** screen, Instagram defaults to **1:1** (square). Before clicking Next, set the crop to **9:16** (vertical) so the video posts as a proper full-height reel — unless the user requested a different ratio.
+
+- Click the **crop / aspect-ratio button** — the icon at the bottom-left of the video preview (a rectangle/expand icon, labelled "Select crop"). This opens a small menu of ratios: **Original, 1:1, 4:5, 16:9, 9:16**.
+- Click **9:16** (the default for this skill). If the user asked for a different ratio, pick that one instead. Take a `browser_snapshot` to confirm the preview updated to the vertical crop.
+- Click **Next**.
+- On the **Edit** screen → click **Next**.
+
+If the crop menu labels aren't visible in the snapshot, hover/click the crop icon and re-snapshot to read the options before choosing.
 
 ### 8. Add the caption and share
 
